@@ -1,41 +1,33 @@
 # Binary Search function takes two parameters (sortedArray, item)
 # sortedArray is an array that has been sorted before put in the function
 # item is the object that is being searched for in the array
-# The function returns true if item is found in sortedArray and false otherwise
-
-def binarySearch(sortedArray, item):
-    low = 0
-    high = len(sortedArray) - 1
-    mid = (low + high) / 2
-
-    while (True):
-        if (mid == low or mid == high):
-            return False
-        elif (item > mid):
-            low = mid
-            mid = (low + high) / 2
-        elif (item < mid):
-            high = mid
-            mid = (low + high) / 2
-        elif (item == mid):
-            return True
+# The function returns index of item if item is found in sortedArray and None otherwise
         
-def binarySearch2(sortedArray, item):
+def binarySearch(sortedArray, item):
     low = 0
     high = len(sortedArray) - 1
 
     while low <= high:
-        mid = (low + high)
+        mid = int((low + high) / 2)
         guess = sortedArray[mid]
 
         if guess == item:
-            return True
+            return mid
         if guess > item:
             high = mid - 1
         else:
             low = mid + 1
-    return False
-        
-testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    return None
 
-print(binarySearch2(testArray, 4))
+# binarySearchMaxSteps takes one parameter (array)
+# array is the array that is to be binary searched
+# returns the maximum number of steps required to perform binary search of the array
+
+def binarySearchMaxSteps(array):
+    size = len(array) - 1
+    steps = 1
+
+    while(size > 1):
+        steps += 1
+        size = int(size / 2)
+    return steps
